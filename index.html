@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<div>
+    <form>
+        <label for="uid">Username:</label>
+        <input type="text" id="uid" name="uid" value=""><br>
+        <label for="fname">First name:</label>
+        <input type="text" id="fname" name="fname" value=""><p id="validFirst"></p>
+        <label for="lname">Last name:</label>
+        <input type="text" id="lname" name="lname" value=""><p id="validLast"></p>
+        <label for="birthday">Birthday:</label>
+        <input type="date" id="birthday" name="birthday" value="mm/dd/yyyy"><br>
+        <input type="button" value="Accept" onclick="validateForm()">
+</form>
+
+<p id="invalidUserName"></p>
+
+
+</div>
+
+<script>
+    
+function validateForm() {
+	//Set Variables
+    let charUpperCase=false
+    let charLowerCase=false
+    let charIsNum=false
+    let uidLength=false
+    let uid=document.getElementById("uid").value
+
+	//Check uid length
+    if (uid.length >= 8 && uid.length <=12 ) {
+        uidLength=true;
+        }
+    //Validate User Id
+    for (let i = 0; i < uid.length; i++) {
+        let uidChar= uid[i]
+        if (uidChar == uidChar.toUpperCase()){
+            charUpperCase=true
+        }
+		if (uidChar == uidChar.toLowerCase()){
+            charLowerCase=true
+        }
+		if (!Number.isNaN(uidChar)){
+            charIsNum=true
+        }		
+	}
+	console.log(charUpperCase)
+	console.log(charLowerCase)
+	console.log(charIsNum)
+	console.log(uidLength)
+
+    if (charUpperCase==false || charLowerCase==false || charIsNum==false || uidLength==false){
+        document.getElementById("invalidUserName").innerHTML="Invalid Username"
+	
+    }
+	else {document.getElementById("invalidUserName").innerHTML="Validated"
+	}
+	console.log(valName(fname))
+	if (valName(fname)=true){
+		document.getElementById("validFirst").innerHTML=""
+	}	else {
+		document.getElementById("validFirst").innerHTML="Invalid Name"
+	}
+	if (valName(lname)=true){
+		document.getElementById("validLast").innerHTML=""
+	}	else {
+		document.getElementById("validLast").innerHTML="Invalid Name"
+	}
+}
+
+function valName(inputName){
+	if (inputName != undefined && inputName != ""){
+	return true
+	} else{
+		return false
+	}
+}
+
+
+
+
+</script>
+
+</body>
+</html>
